@@ -1,0 +1,151 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              Document Settings                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   Margins                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\addtolength{\oddsidemargin}{-1.cm}
+\addtolength{\textwidth}{2cm}
+\addtolength{\topmargin}{-2cm}
+\addtolength{\textheight}{3.5cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   Packages                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[pdftex]{graphicx}	% Include graphics
+\usepackage{float}				% Place floats inline, use the [H] placement
+\usepackage{array}				% Additional tables features
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   Document                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+	
+	% Title page
+	% Title page
+	\begin{titlepage}
+		\begin{center}
+			
+			% University Logo
+			\includegraphics[width=0.6\textwidth]{../images/up_logo.jpg}\\[2.0cm] 
+			
+			
+			\textsc{\LARGE CS@UP Time Series Prediction}\\[1.0cm]
+			
+			
+			\textsc{\Large User Manual}\\[0.75cm]
+			
+			
+			\textsc{\Large COS301 - Capstone Project}\\[0.75cm]
+			
+			
+			% Students/Contributors Table
+			\textbf{\huge \\ Team:}
+			\huge NewGen Leaders \\
+			\begin{flushright} \large
+				Claudio Da Silva		\emph{u14205892} \newline
+				Dedr\'e Olwage	    	\emph{u15015239} \newline
+				Merrisa Joubert			\emph{u15062440} \newline
+				Murray Le Roux	    	\emph{u15311644} \newline
+			\end{flushright}
+			\small Department of Computer Science, University of Pretoria \\ 
+			
+			
+		\end{center}
+		
+		% Report Declaration		
+		\noindent By submitting this document we confirm that we have read and are aware of the University of Pretoria's policy on academic dishonesty and plagiarism and we declare that the work submitted in this assignment is our own as delimited by the mentioned policies. We explicitly declare that no parts of this assignment have been copied from current or previous students' work or any other sources (including the internet), whether copyrighted or not. We understand that we will be subjected to disciplinary actions should it be found that the work we submit here does not comply with the said policies.
+		
+		\begin{center}
+			
+			% Fill page
+			\vfill
+			
+			% Date
+			{\large \today}
+			
+		\end{center}
+		
+	\end{titlepage}
+    
+    \tableofcontents
+    % An overview of the System
+    \section{Introduction}
+    	
+        % Specify the purpose of the product
+        \subsection{Purpose}
+        
+        % Identify product by name, explain what the product will and will not do, describe the uses of the product including objectives, goals and benefits
+        \subsection {Scope}
+        
+        
+        \subsection{Definitions,Acronyms and Abbreviations}
+        
+        % Outline the overview of the user manual
+        \subsection{User manual overview}
+       
+  
+    \section{Installing the software}
+
+    	% Things to note before settign up the system
+    	\subsection{Before you begin}
+   	
+    	% Explains how to setup the system making use of the dockehub image or docker-compose up
+    	\subsection{Using a system Docker image}
+    	
+    		\subsubsection {Retrieving the files}
+    		
+    		\subsubsection {Compiling the software}
+    		
+    		\subsubsection {Running the software} 
+    	
+    	% Setting up the server as a standalone system for use with another client, either using docker-compose or the manual way
+     	\subsection{Server}
+     	
+	    	\subsubsection {Retrieving the files}
+   	    		
+	     	\subsubsection {Compiling the software}
+	     	
+	     	\subsubsection {Running the software}
+     
+       	% Setting up the client as a standalone system for use with another server, either using docker-compose or the manual way
+     	\subsection{Client}
+     	
+     		\subsubsection {Retrieving the files}
+     		
+     		\subsubsection {Compiling the software}
+     		
+     		\subsubsection {Running the software}
+     
+    % How to use the various features of the system
+    
+    \section{Using the software}
+    
+   		%The feature that involves adding new users to a system, either from a database or using a registration system
+    	\subsection{Adding new users to a system}
+    	
+    \section{Troubleshooting}
+    
+	    % Issues that are known to occur in the system and have not yet been solved
+	    \subsection{Know system issues}
+	    
+	    % Error messages that may occur in the system and what exactly they mean
+	    \subsection{System error messages}
+	    
+	    % Questions that commonly tend to come up regarding the system
+	    \subsection{Frequently asked questions}
+	    
+    \section{Appendixes}
+    
+    \section{Index}
+    
+    \pagebreak  
+
+\end{document}

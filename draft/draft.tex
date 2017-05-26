@@ -1,0 +1,344 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=0.8in]{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{color}
+
+
+\graphicspath{ {images/} }
+
+\begin{document}
+
+\begin{titlepage}
+	
+	\begin{center}
+		
+		
+		\begin{figure}[t]
+			\centering
+			\includegraphics[width=200px]{../images/up_logo.jpg}
+		\end{figure}
+		
+		%Title
+		\textsc{\Huge Time Series Prediction Client Draft} \\ 
+	
+		\textbf{\huge \\Authors:} 
+		\huge NewGen Leaders\\
+
+		\begin{flushright} \large
+		\end{flushright}
+		\small Department of Computer Science, University of Pretoria \\
+		[6mm]
+		{\textbf{Last date updated}: \textit{\today}\\}
+		
+		
+	\end{center}
+
+\end{titlepage}
+
+\pagebreak
+
+\tableofcontents
+
+\pagebreak
+
+\section{Introduction}
+
+	\subsection{Background}
+	As is, most institutions have their own method for managing marks, most of which are inefficient. They make use of elements such as spreadsheets for recording marks, and distribute them in terrible fashion such as large amounts of PDFs. With all these marks in different places and formats, it makes it difficult to keep track of students who need help, or errors that may occur when dealing with large groups of sometimes a thousand students at a time.
+	
+	\subsection{Vision}
+	The Time Series Prediction project aims to create a centralised portal for controlling student related information. It constructs a common method of organising marks, where multiple people can handle the same set of data simultaneously, as well as creating a quick delivery system; allowing students to be notified of marks as they arrive. By storing all this information in a single location, one gains the ability to process this information in a swarm the way no one person could. Clever analytics can then use this to detect problems in specific modules, or across various modules, notifying both students and lecturers of problems at an earlier stage where something can still be done. The system further aims to create an element of motivation for students, adding an element of gamification which can help students to perform better.
+
+\pagebreak
+
+\section{Module Division}
+
+	The module breakdown for the Time Series Prediction application
+	
+	\subsection{Users}
+	
+		\subsubsection{Overview}
+		
+		The users module is to be maintained as a storage and control module, which provides access via other modules to all user data, based on the accessing party's permissions.\\\\	
+		The initial idea in order to create a more decoupled system, is to grant users different permissions based on a list of permissions the application has defined. There are two types of permissions:
+		\begin{itemize}
+			\item \textbf{Global}
+			\begin{itemize}
+				\item This is a permission set for the entirety of the application. If set, this grants access whenever that permission is requested, anywhere in the application, regardless of module division. Some permissions only have a global version, such as the permission to create users.
+			\end{itemize}
+			\item \textbf{Local}
+			\begin{itemize}
+				\item This is a permission set for only a specific module of the program. If set, this grants access whenever that permission is requested, but only in modules to which that permission is set as true. In all other modules that permission will be denied.
+			\end{itemize}
+		\end{itemize}
+		By default, the initial user is created as a "Superuser", where all permissions for the program are set to true. This superuser can then from there create or import further users and set their permissions accordingly. By default, any new user created is automatically set to have no permissions at all.\\\\
+		One can define a "role" entity, which is a named, pre-defined list of default permissions which are usually associated with the tasks meant for the role in question. Roles contain a list of only permissions one wants changed, and may affect all, or only some permissions when assigned. Once created, a role can be assigned various times to other users as necessary. Although a user may be given a role, their permissions may still be customised further, thus not locking users into permissions set by their roles.
+		
+		\subsubsection{Expected Functionality}
+		
+		\begin{itemize}
+			\item To correctly provide authentication based on a user's credentials.
+			\item To restrict access to the various functions of the software based on a user's permissions list.
+			\item To grant a user with the correct permissions, the ability to create a new user from scratch.
+			\item Allow access to an already existing database solution in order to import possibly existing users and their details.
+			\item To grant a user the ability to modify aspects of their own personal details which is deemed safely modifiable and restricted by ones permissions.
+			\item To grant a user with the appropriate permissions the ability to modify the personal details of others where deemed safe and necessary.
+			
+		\end{itemize}
+	
+	\pagebreak
+	
+	\subsection{Data Control}
+	
+		\subsubsection{Overview}
+		
+		The data control module constitutes the main interface of the program itself, and functions by exposing it's core functionality to the access module as REST endpoints making use of the Facade design pattern to simplify the interaction complexities between client and server, allowing for easy design change at any point. This module handles the use of the messaging queue to ensure no data loss occurs on down time or heavy system loads.\\\\
+		
+		\subsubsection{Expected Functionality}
+		
+		\begin{itemize}
+			\item To expose functions as REST endpoints to the access module where necessary
+			\item To manage the messaging queue, ensuring that no messages received are ever lost.
+		\end{itemize}
+	
+		\pagebreak
+	
+	\subsection{Modules Content}
+	
+		\subsubsection{Overview}
+		
+		The modules content system module handles the functionality regarding modules (In the academic sense) and the data related to them. This includes making available all non-user module specific CRUD operations required on student data, as well as developing a method to correctly distribute that data to the relevant parties in a timely manner.\\\\
+		A module may contain as many administrative roles as needed, consisting of at the least a head lecturer in charge of the majority module aspects. The module is then populated with a list of students belonging to the module.\\\\
+		One may add new "tasks" to a module if given the correct permission. These tasks then consist of various components:
+		\begin{itemize}
+			\item \textbf{Marks}
+			\begin{itemize}
+				\item A list of marks, populated with the students that are deemed part of that module. Marks consist of a total mark for that task, a semester weighting for that task and a list of marks for the students associated with that task.
+			\end{itemize}
+			\item \textbf{Type}
+			\begin{itemize}
+				\item A task may be defined as either being theoretical, practical or participation based in nature, to help analytics better identify problem areas for students.
+			\end{itemize}
+			\item \textbf{Queries}
+			\begin{itemize}
+				\item A task contains an option to query up until a deadline, once that deadline is met all queries are closed. A list of queries related to that task can then be pulled up by those with the correct permissions.
+			\end{itemize}
+		\end{itemize}
+		\textbf{Note}: Integration with outside software may be added in at some point based on feasibility in order to obtain marks in a more simplified fashion from systems already in place. (e.g The University of Pretoria's Computer Science Department's "FitchFork" automated marking system.)
+		
+		\subsubsection{Expected Functionality}
+		
+		\begin{itemize}
+			\item To CRUD modules to and from the list of available modules if the user permissions are deemed correct.
+			\item To CRUD tasks and all relevant components, to and from the list of available modules if the user permissions are deemed correct.
+			\item To allow a user to review and obtain the data relevant to the modules they are participating in, the level of which is determined by their permissions list.
+			\item To provide an up to date list of marks to all relevant parties in the module.
+			\item To generate a document such as a PDF, or some format of output containing the list of marks for that module to a user with correct permissions.
+			\item To allow a user to provide feedback to determine whether a module is performing as it should or not.
+		\end{itemize}
+	
+	\pagebreak
+	
+	\subsection{Notifications}
+	
+		\subsubsection{Overview}
+		
+		The notifications module controls and allows for notifications of various types (Email, Web Notifications etc.), to be sent based on a users needs, and can be triggered by various events throughout the system.
+		
+		\subsubsection{Expected Functionality}
+		
+		\begin{itemize}
+			\item To allow secure and authorized communication to users based on the contact details they have provided.
+			\item To allow communication to happen based on a function event trigger. (e.g Sending an email to confirm a new registration occurrence)
+			\item To allow default communication (A pre-defined message) to happen on a user triggered (Requested via client) event (e.g A reset password link on a user profile)
+			\item To allow custom communication (A user defined message) to happen on a user triggered (Requested via client) event. (e.g Making a query or responding to one.)
+			\item To allow communication based on a time based trigger. (e.g Reminders of a module specific event.)
+		\end{itemize}
+	
+	\pagebreak
+	
+	\subsection{Analytics}
+	
+		\subsubsection{Overview}
+		
+		The analytics module runs in parallel with the main server as a scalable service, and allows for data retrieved to be analysed in order to obtain useful statistics on users or modules. This data is then formatted and delivered in a readable and efficient way defined by the client. Analysis events may be requested to run on a time based service. These events may then be set to notify parties if anything important is discovered, such as determining poor performance in a module, or alerting of risk of failure.
+		
+		\subsubsection{Expected Functionality}
+		
+		\begin{itemize}
+			\item To allow a user to request an analysis, based on correct permissions, and define a schema for that analysis, which should determine what to look for, and how to go about it.
+			\item To allow user data to be assessed in various ways based on a user defined analysis schema.
+			\item To allow a halting of analysis if system capacity is deemed to be at a peak point.
+			\item To group together users with similar issues (Such as those struggling with theoretical tasks, and those with practical tasks), and as such obtain times and people with which to deal with the issue in as a group, promoting efficiency.
+		\end{itemize}
+	
+	\pagebreak
+	
+	\subsection{Gamification}
+	
+		\subsubsection{Overview}
+		
+		The gamification module revolves around the element of motivating a user to perform better. It revolves around the idea that by adding a game like element to an otherwise tedious or boring task, one can become better motivated to perform and place in extra effort, if one can see genuine results from those tasks. This is a method implemented in many systems to date, as well as challenge sites and more.
+		
+		\subsubsection{Expected Functionality}
+		
+		\begin{itemize}
+			\item To generate an anonymous ranking leaderboard (Where user details are omitted) for a module, which determines the users position in that module based on current calculated mark. This shows the user their mark in relation with the rest, and can show the user if they are below the average or above it. This can determine if user performance is poor, or if the module needs adjusting.
+			\item To generate or obtain, depending on your involvement in the module, badges/achievements, where by performing a specific task, a user can obtain said badge as proof they have accomplished something worthwhile, and strive towards obtaining a collection of them. 
+			\item A Reward/Penalty system can be implemented by users with correct permissions if they so wish. These can include but are not limited to things such as bonus marks for early hand-in, deadline leniency for exemplary performance or sub-minimum mark removal for individuals who show an increased effort or perform well enough in an assigned task.
+		\end{itemize}
+	
+	\pagebreak
+	
+	\subsection{Access}
+	
+		\subsubsection{Overview}
+		
+		The access module refers to the graphical front-end client, which at this point in time is web-based, although the system should be designed in such a way that any new client can easily be added. This module will provide the GUI as a service, and will communicate with the server service via the data control module and it's messaging queue, to create the link between client and server.
+		
+		\subsubsection{Expected Functionality}
+		
+		\begin{itemize}
+			\item Provide a suitable graphical use interface with which to access the server.
+			\item Send/receive messages (JSON) to and from the server, by means of a message queue. 
+		\end{itemize}
+	
+	\pagebreak
+
+\section{Architectural  Patterns}
+
+The system makes use of the following architectural in the design:
+
+\begin{itemize}
+	
+	\item \textbf{Microservices variant of SOA (Service Oriented Architecture)}\\\\
+	The system as a whole can be divided into docker deployable services, such as the server, the client and the database. At the same time, smaller services such as notifications and analysis run parallel to the main body of the server, allowing for multiple deployments to increase scalability. This allows efficient scaling, easy management of smaller services and faster deployment time when changing certain parts.
+	
+	\item \textbf{Layered Architecture (N tier)}\\\\
+	By ensuring that the system accesses each component in a layer, we ensure that no component interacts with a component it shouldn't. This provides separation of concerns, as well as security between layers. It ensures that each layer can be mocked out and tested independently. It also allows for increased pluggability of integrations and additional business logic.
+	
+	\item \textbf{MVC (Model View Controller)}\\\\
+	The system makes use of the concept of separating into various components, namely: Model, View and Controller. This allows ease of modification, along with high cohesion and low coupling. It also has the benefit of allowing multiple people to work in different areas efficiently.
+	
+	\item \textbf{Blackboard Pattern}\\\\
+	When performing analytics, we make use of the blackboard design pattern. By taking in information we gather, processing it and then generating a response based on it, we make effective use of the pattern. This allows us to solve problems that would take humans hours of analysing to determine a result in a shorter span of time, or with less human computational effort.
+
+\end{itemize}
+
+\pagebreak
+
+\section{Architectural Tactics}
+
+The system makes use of the following architectural tactics in order to increase efficiency, and is centred towards improving system scalability:
+
+\begin{itemize}
+	
+	\item \textbf{Thread Pooling}\\\\
+	Thread pooling is to be used when handling notifications. By spinning up a thread ready to send a notification, and leaving it in a pool, by simply passing it the needed information one can quickly and efficiently send what is needed without the wait time of thread creation.
+	
+	\item \textbf{Load Balancing}\\\\
+	Load Balancing is to be used on the analysis module, allowing multiple instances and devices, to run different analysis schemas on data simultaneously while making use of their own resources.
+	
+\end{itemize}
+
+\pagebreak
+
+\section{Quality requirements}
+
+The Quality requirements for the system include, but is not limited to, the following Ranking the requirements in order of most important relevant to the system and proposed solutions for those requirements:
+
+\begin{itemize}
+	\item \textbf{Security}\\\\
+	The concept of security is ranked highest as the system concerns important data that can affect people in extremely negative ways if maliciously changed.
+	\begin{itemize}
+		\item Use authorization levels to heavily restrict access to certain parts of the application.
+		\item Add an extra authentication layer when working with very important data (e.g having a second account confirm all changes made).
+	\end{itemize}
+	
+	\item \textbf{Accountability}\\\\
+	The concept of accountability is important considering the amount of people given access to important information, accountability ensures that malicious action can be traced back and fixed before becoming an issue.
+	\begin{itemize}
+		\item Use of a logger to keep track of transactions across the system, storing them safely for viewing later.
+	\end{itemize}
+	
+	\item \textbf{Reliability}\\\\
+	The concept of reliability is important due to the fact that important information is constantly being stored, and if lost has a huge negative impact. This means that in the even anything happens, no or very little data should be lost.
+	\begin{itemize}
+		\item Backup the database at a constant interval.
+		\item Messaging queue ensures fault tolerance in case of down time.
+	\end{itemize}
+	
+	\item \textbf{Scalability}\\\\
+	The concept of scalability is important as the system is expected to hold more than a thousand active users, to which any number can be active at a single time.
+	\begin{itemize}
+		\item Use a messaging queue to ensure that transactions don't get lost at any point.
+		\item Make use of a server designed for scalability (such as Node.js)
+		\item Use docker to ensure easy deploy-ability if system is to be scaled up.
+	\end{itemize}
+	
+	\item \textbf{Performance}\\\\
+	The concept of performance is important as people can get impatient when waiting long periods of time for things to happen, but it is less important than ensuring a safe and secure system.
+	\begin{itemize}
+		\item Make use of stored procedures when working with databases to ensure faster CRUD
+		\item Ensure heavy system tasks are halted during peak system capacity, such as time based analytics etc.
+	\end{itemize}
+	
+	\item \textbf{Reusability}\\\\
+	The concept of reusability refers the ability for the system to be easily used in more than one environment. The system should in theory be able to work for any department at least, and for any university if possible.
+	\begin{itemize}
+		\item Ensure all code and modules are decoupled
+		\item Allow for customization of everything rather than locking in on anything (e.g Defined roles, list of modules, integrations)
+	\end{itemize}
+\end{itemize}
+
+\pagebreak
+
+\section{Technologies}
+
+The following technologies are to be considered when implementing the system, and may change at any point in time until the first version release:
+
+	\subsection{Server Side}
+	
+		\subsubsection{Programming Languages}
+
+		\begin{itemize}
+			\item \textbf{JavaScript}\\\\
+			As the system so far is to be designed in a MEAN stack style manner, the use of JavaScript throughout the program will be highly prevalent.
+		\end{itemize}
+	
+		\subsubsection{Frameworks}
+		
+		\begin{itemize}
+			\item \textbf{Express.js}\\\\
+			A platform which builds upon Node.js, it is chosen for the fact that it is highly scalable, and easily implemented into a service based architecture. It is lightweight, well documented and well maintained by a large community.
+		\end{itemize}
+	
+	\subsection{Web-Client Side}
+	
+		\subsubsection{Programming Languages}
+		
+		\begin{itemize}
+			\item \textbf{JavaScript}\\\\
+			As the system so far is to be designed in a MEAN stack style manner, the use of JavaScript throughout the program will be highly prevalent.
+		\end{itemize}
+		
+		\subsubsection{Frameworks}
+		
+		\begin{itemize}
+			\item \textbf{Angular 2}\\\\
+			A platform making use of Typescript, a superset of JavaScript. It is fast and efficient, as well as well documented and maintained. It works well inside the MEAN stack architecture, and allows for the fastest secure communication between express.
+		\end{itemize}
+
+	\subsection{Storage}
+	
+		\subsubsection{Database}
+		
+		\begin{itemize}
+			\item \textbf{MongoDB}\\\\
+			MongoDB is chosen for two main reasons. As Analysis will be the most consuming task of the system, the need for faster retrieval outweighs the need for faster editing, making a NoSQL database such as Mongo a more promising contender than a counterpart such as PostgreSQL for example. The second reason is that when choosing the NoSQL database, MongoDB performs well combined with the other components of the MEAN stack architecture, allowing for the best integration into our system.
+		\end{itemize}
+		
+\end{document}
+

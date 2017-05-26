@@ -1,0 +1,167 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              Document Settings                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   Margins                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\addtolength{\oddsidemargin}{-1.cm}
+\addtolength{\textwidth}{2cm}
+\addtolength{\topmargin}{-2cm}
+\addtolength{\textheight}{3.5cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   Packages                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[pdftex]{graphicx}	% Include graphics
+\usepackage{float}				% Place floats inline, use the [H] placement
+\usepackage{array}				% Additional tables features
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   Document                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+	
+	% Title page
+	% Title page
+	\begin{titlepage}
+		\begin{center}
+			
+			% University Logo
+			\includegraphics[width=0.6\textwidth]{../images/up_logo.jpg}\\[2.0cm] 
+			
+			
+			\textsc{\LARGE CS@UP Time Series Prediction}\\[1.0cm]
+			
+			
+			\textsc{\Large Testing Document}\\[0.75cm]
+			
+			
+			\textsc{\Large COS301 - Capstone Project}\\[0.75cm]
+			
+			
+			% Students/Contributors Table
+			\textbf{\huge \\ Team:}
+			\huge NewGen Leaders \\
+			\begin{flushright} \large
+				Claudio Da Silva		\emph{u14205892} \newline
+				Dedr\'e Olwage	    	\emph{u15015239} \newline
+				Merrisa Joubert			\emph{u15062440} \newline
+				Murray Le Roux	    	\emph{u15311644} \newline
+			\end{flushright}
+			\small Department of Computer Science, University of Pretoria \\ 
+			
+			
+		\end{center}
+		
+		% Report Declaration		
+		\noindent By submitting this document we confirm that we have read and are aware of the University of Pretoria's policy on academic dishonesty and plagiarism and we declare that the work submitted in this assignment is our own as delimited by the mentioned policies. We explicitly declare that no parts of this assignment have been copied from current or previous students' work or any other sources (including the internet), whether copyrighted or not. We understand that we will be subjected to disciplinary actions should it be found that the work we submit here does not comply with the said policies.
+		
+		\begin{center}
+			
+			% Fill page
+			\vfill
+			
+			% Date
+			{\large \today}
+			
+		\end{center}
+		
+	\end{titlepage}
+    
+    \tableofcontents
+    
+    % An overview of the Testing
+    \section{Introduction}
+    	
+        %Specify the purpose of this SRS and the intended audience
+        \subsection{Purpose}
+        
+        %Identify product by name, explain what the product will and will not do, describe the uses of the product including objectives, goals and benefits
+        \subsection{Scope}
+        
+        \subsection{Definitions, Acronyms and Abbreviations}
+        
+        % Outline the rest of the SRS and how it is organized 
+        \subsection{Overview of testing}
+        
+    % Explain the current testing framework in use
+    \section{Testing framework}
+    
+    	% Describe the testing framework in place for the server
+    	\subsection{Server}
+    	
+    		% Describe the chosen testign framework in place
+	    	\subsubsection{The chosen testing framework}
+	    	
+	    	% Explain how to run the tests for the that framework
+	        \subsubsection{How to run the tests}
+	        
+	        % Explain the current system of automated testing and how to use and view it
+	        \subsubsection{Automated testing overview}
+	        
+	    	% Describe the testing framework in place for the client
+	    \subsection{Web Client}
+	    
+	    % Describe the chosen testign framework in place
+	    \subsubsection{The chosen testing framework}
+	    
+	    % Explain how to run the tests for the that framework
+	    \subsubsection{How to run the tests}
+	    
+	    % Explain the current system of automated testing and how to use and view it
+	    \subsubsection{Automated testing overview} 
+        
+    % List the tests performed on the system
+    \section{System tests}
+    
+    	% List the unit tests which test the functions in the system
+    	\subsection{Unit tests}
+    	
+    		\subsubsection{Server}
+    		
+    		\subsubsection{Web Client}
+    	
+    	% List the integration tests which test compatability between modules
+        \subsection{Integration tests}
+        
+        	\subsubsection{Server}
+        	
+        	\subsubsection{Web Client}
+        
+        % List the functional/system test which test functionality between containers, and overall working of the system
+        \subsection{Functional/system tests}
+     
+    % List the reports on those tests  
+    \section{Test reports}
+	   
+	    % List the reports for unit tests which test the functions in the system
+    	\subsection{Unit tests}
+	    
+		    \subsubsection{Server}
+		    
+		    \subsubsection{Web Client}
+	    
+	    % List the reports for integration tests which test compatability between modules
+	    \subsection{Integration tests}
+	    
+		    \subsubsection{Server}
+		    
+		    \subsubsection{Web Client}
+	    
+	    % List the reports for functional/system tests which test functionality between containers, and overall working of the system
+	    \subsection{Functional/system tests}
+	
+	\section{Testing release log}
+        
+    \section{Appendixes}
+    \section{Index}
+    \pagebreak  
+
+\end{document}

@@ -83,13 +83,24 @@
         \subsection{Purpose}
         
         % Identify product by name, explain what the product will and will not do, describe the uses of the product including objectives, goals and benefits
+The purpose of this document is to present a detailed description of the Time Series Prediction System. It will explain the purpose and features of the system, the interfaces of the system, what the system will do, the constraints under which it must operate and how the system will react to external stimuli. This document is intended for both the stakeholders and the developers of the system.
         \subsection{Scope}
-        
+The system will be used to enter, view, and edit student marks. It will include a prediction system that will use the student marks to make predictions on the outcomes of the students results at the end of the semester. These predictions will be used by lecturers to identify students who need extra help to pass the semester. The predictions may also be used to identify whether the teaching strategies of the lecturer are working as well as they expected it to. The system will allow students to view their marks and it will include an element of gamification that aims to improve student motivation. The ultimate goal of the system is to improve student results. The system also aims to improve the manner in which teaching assistants, tutors and lecturers record marks.
         \subsection{Definitions,Acronyms and Abbreviations}
-        
+        \begin{center}
+\begin{tabular}{ |c|c| } 
+\hline
+Term & Definition \\
+\hline
+Stakeholder & A person, whom is not a developer, that has an interest in the product\\
+\hline
+Time series prediction & A number of algorithms that use current input data to predict future data\\
+\hline
+\end{tabular}
+\end{center}
         \subsection{References}
-        
         % Outline the rest of the SRS and how it is organized 
+        This document defines the overall Description of the product. It then explains the product perspective and gives details about the different interfaces of the system. The document further explains the functions and characteristics of the system. System constraints and requirements are elaborated.
         \subsection{Overview}
         
     % Provide an overview of the product
@@ -130,15 +141,47 @@
     	\subsection{External Interface Requirements}
     	
         \subsection{Functional Requirements}
-        
+        	\subsubsection{Business Requirements}
+        	\begin{itemize}
+        	\item The system is initialized with a single Dean as the main Admin with all rights
+        	\item The Dean adds HODs to the system
+        	\item HODS can then add lecturers, and assistant lecturers to the system
+        	\item Lecturers add teaching assistant, tutors, and students to their specific modules
+        	\item Students write tests and complete practicals and assignments
+        	\item The results of the tests, practicals and assignments are entered into the system by tutors, assistant lecturers and lecturers
+        	\item The system performs time series prediction on these results and sends reports about the results and predictions to the lecturer
+        	\item The lecturer may then choose to contact students who need extra help
+        	\end{itemize}
+        	\subsubsection{Security Requirements}
+        	\begin{itemize}
+        	\item The system will limit access to authorized users
+        	\item Roles are assigned to user. Each role will have its own abilities. Roles include: student, teaching assistant, tutor, assistant lecturer, lecturer, head of department, and Dean.
+        	\item Students can only view and query marks
+        	\item Teaching assistants may add marks, but these marks have to be reviewed by a lecturer or assistant lecturer to be submitted to the database
+        	\item Assistant Lecturers and lecturers may modify, view, and add or remove marks
+        	\item The Dean has to add HODs to the system, HODS will add Lecturers, Lecturers will add assistant lecturers and assistant lecturers will add teaching assistants and tutors to the system
+        	\end{itemize}
+        	
         \subsection{Performance Requirements}
+        \begin{itemize}
+        \item The system will be required to work with potentially thousands of students.
+        \item The system will manage many simultaneous notifications
+        \item The system will need to manage the simultaneous login of a multitude of users.
+        \end{itemize}
         
         \subsection{Design Constraints}
+        \begin{itemize}
+        \item Time limit
+        \item The application will be web based and must be cross-platform
+        \end{itemize}
         
         \subsection{Software System Attributes}
         
         \subsection{Other Requirements}
-        
+        \begin{itemize}
+        \item Gamification elements are required to improve student motivation
+        \item Anonymous leader boards will be displayed to all students
+        \end{itemize}
     \section{Appendixes}
     
     \section{Index}

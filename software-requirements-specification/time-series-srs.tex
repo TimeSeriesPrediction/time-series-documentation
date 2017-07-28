@@ -20,6 +20,7 @@
 \usepackage[pdftex]{graphicx}	% Include graphics
 \usepackage{float}				% Place floats inline, use the [H] placement
 \usepackage{array}				% Additional tables features
+\usepackage{tabularx}           % Used to size tables
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -87,16 +88,18 @@ The purpose of this document is to present a detailed description of the Time Se
         \subsection{Scope}
 The system will be used to enter, view, and edit student marks. It will include a prediction system that will use the student marks to make predictions on the outcomes of the students results at the end of the semester. These predictions will be used by lecturers to identify students who need extra help to pass the semester. The predictions may also be used to identify whether the teaching strategies of the lecturer are working as well as they expected it to. The system will allow students to view their marks and it will include an element of gamification that aims to improve student motivation. The ultimate goal of the system is to improve student results. The system also aims to improve the manner in which teaching assistants, tutors and lecturers record marks.
         \subsection{Definitions,Acronyms and Abbreviations}
-        \begin{center}
-\begin{tabular}{ |c|c| } 
-\hline
-Term & Definition \\
-\hline
-Stakeholder & A person, whom is not a developer, that has an interest in the product\\
-\hline
-Time series prediction & A number of algorithms that use current input data to predict future data\\
-\hline
-\end{tabular}
+\begin{center}
+	\begin{tabularx}{\textwidth}{ |X|X|X|X| }
+	\hline
+	Term & Definition \\
+	\hline
+	Stakeholder & A person, whom is not a developer, that has an interest in the product\\
+	\hline
+	Time series prediction & A number of algorithms that use current input data to predict future data\\
+	\hline
+	CRUD & Create, Read and Update\\
+	\hline
+	\end{tabularx}
 \end{center}
         \subsection{References}
         % Outline the rest of the SRS and how it is organized 
@@ -310,7 +313,7 @@ Time series prediction & A number of algorithms that use current input data to p
        		\item \textbf{Hardware constraints}
         	\begin{center}
         		
-        		\begin{tabular}{ |c|c| }
+        		\begin{tabularx}{\textwidth}{ |X|X| }
         			
         			\hline
         			Constraint Number & Constraint Description \\
@@ -318,12 +321,12 @@ Time series prediction & A number of algorithms that use current input data to p
         			C1 & An active connection must consistently be maintained \\
         			\hline
         			
-        		\end{tabular}
+        		\end{tabularx}
         	\end{center}
         	\item \textbf{Software constraints}
                \begin{center}
                	
-		        	\begin{tabular}{ |c|c| }
+		        	\begin{tabularx}{\textwidth}{ |X|X| }
 		        		 
 		        		\hline
 		        		Constraint Number & Constraint Description \\
@@ -337,7 +340,7 @@ Time series prediction & A number of algorithms that use current input data to p
 		        		C4 & Browsers used must be HTML 5 compliant and have JavaScript active \\
 		        		\hline
 		        		
-		        	\end{tabular}
+		        	\end{tabularx}
         		\end{center}
         \end{itemize}
     
@@ -364,26 +367,366 @@ Time series prediction & A number of algorithms that use current input data to p
     	The system should be able to interface with the mail server currently in place at the institution, or any other kind of cloud based service.
     	
         \subsection{Functional Requirements}
-        	\subsubsection{Business Requirements}
-        	\begin{itemize}
-        	\item The system is initialized with a single Dean as the main Admin with all rights
-        	\item The Dean adds HODs to the system
-        	\item HODS can then add lecturers, and assistant lecturers to the system
-        	\item Lecturers add teaching assistant, tutors, and students to their specific modules
-        	\item Students write tests and complete practicals and assignments
-        	\item The results of the tests, practicals and assignments are entered into the system by tutors, assistant lecturers and lecturers
-        	\item The system performs time series prediction on these results and sends reports about the results and predictions to the lecturer
-        	\item The lecturer may then choose to contact students who need extra help
-        	\end{itemize}
-        	\subsubsection{Security Requirements}
-        	\begin{itemize}
-        	\item The system will limit access to authorized users
-        	\item Roles are assigned to user. Each role will have its own abilities. Roles include: student, teaching assistant, tutor, assistant lecturer, lecturer, head of department, and Dean.
-        	\item Students can only view and query marks
-        	\item Teaching assistants may add marks, but these marks have to be reviewed by a lecturer or assistant lecturer to be submitted to the database
-        	\item Assistant Lecturers and lecturers may modify, view, and add or remove marks
-        	\item The Dean has to add HODs to the system, HODS will add Lecturers, Lecturers will add assistant lecturers and assistant lecturers will add teaching assistants and tutors to the system
-        	\end{itemize}
+        
+        	\subsubsection{Users}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & U1 \\
+        			\hline
+        			\textbf{Functionality} & To correctly provide authentication based on a user's credentials. \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & U2 \\
+        			\hline
+        			\textbf{Functionality} & To restrict access to the various functions of the software based on a user's permissions list. \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & U3 \\
+        			\hline
+        			\textbf{Functionality} & To grant a user with the correct permissions, the ability to create a new user from scratch. \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & U4 \\
+        			\hline
+        			\textbf{Functionality} & Allow access to an already existing database/spreadsheet solution in order to import possibly existing users and their details. \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & U5 \\
+        			\hline
+        			\textbf{Functionality} & To grant a user the ability to modify aspects of their own personal details which is deemed safely modifiable and restricted by ones permissions. \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & U6 \\
+        			\hline
+        			\textbf{Functionality} & To grant a user with the appropriate permissions the ability to modify the personal details of others where deemed safe and necessary. \\
+        			\hline
+        			\textbf{Importance} & Desirable \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        
+        	\subsubsection{Marks and Modules}
+        	
+        	\begin{center}
+	        	\begin{tabularx}{\textwidth}{ |X|X| }
+	        		
+	        		\hline
+	        		\textbf{Use Case ID} & M1 \\
+	        		\hline
+	        		\textbf{Functionality} & CRUD modules to and from the list of available modules if the user permissions are deemed correct. \\
+	        		\hline
+	        		\textbf{Importance} & Essential \\
+	        		\hline
+	        		
+	        	\end{tabularx}
+        	\end{center}
+        
+	        \begin{center}
+	        	\begin{tabularx}{\textwidth}{ |X|X| }
+	        		
+	        		\hline
+	        		\textbf{Use Case ID} & M2 \\
+	        		\hline
+	        		\textbf{Functionality} & To CRUD tasks and all relevant components, to and from the list of available modules if the user permissions are deemed correct. \\
+	        		\hline
+	        		\textbf{Importance} & Essential \\
+	        		\hline
+	        		
+	        	\end{tabularx}
+	        \end{center}
+        
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & M3 \\
+        			\hline
+        			\textbf{Functionality} & To allow a user to review and obtain the data relevant to the modules they are participating in, the level of which is determined by their permissions list. \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & M4 \\
+        			\hline
+        			\textbf{Functionality} & To provide an up to date list of marks to all relevant parties in the module. \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & M5 \\
+        			\hline
+        			\textbf{Functionality} & To generate a document such as a PDF, or some format of output containing the list of marks for that module to a user with correct permissions. \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        
+	        \begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & M6 \\
+        			\hline
+        			\textbf{Functionality} & To allow a user to provide feedback to determine whether a module is performing as it should or not.. \\
+        			\hline
+        			\textbf{Importance} & Desirable \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        
+        	\subsubsection{Notifications}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & N1 \\
+        			\hline
+        			\textbf{Functionality} & To allow secure and authorized communication to users based on the contact details they have provided. \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & N2 \\
+        			\hline
+        			\textbf{Functionality} & To allow communication to happen based on a function event trigger. (e.g Sending an email to confirm a new registration occurrence) \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & N3 \\
+        			\hline
+        			\textbf{Functionality} & To allow default communication (A pre-defined message) to happen on a user triggered (Requested via client) event (e.g A reset password link on a user profile) \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & N4 \\
+        			\hline
+        			\textbf{Functionality} & To allow custom communication (A user defined message) to happen on a user triggered (Requested via client) event. (e.g Making a query or responding to one.) \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & N5 \\
+        			\hline
+        			\textbf{Functionality} & To allow communication based on a time based trigger. (e.g Reminders of a module specific event.) \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        
+        	\subsubsection{Analytics}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & A1 \\
+        			\hline
+        			\textbf{Functionality} & To allow a user to request an analysis, based on correct permissions, and define a schema for that analysis, which should determine what to look for, and how to go about it. \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & A2 \\
+        			\hline
+        			\textbf{Functionality} & To allow user data to be assessed in various ways based on a user defined analysis schema. \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & A3 \\
+        			\hline
+        			\textbf{Functionality} & To allow a halting of analysis if system capacity is deemed to be at a peak point. \\
+        			\hline
+        			\textbf{Importance} & Desirable \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & A4 \\
+        			\hline
+        			\textbf{Functionality} & To group together users with similar issues (Such as those struggling with theoretical tasks, and those with practical tasks), and as such obtain times and people with which to deal with the issue in as a group, promoting efficiency. \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        
+        	\subsubsection{Gamification}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & G1 \\
+        			\hline
+        			\textbf{Functionality} & To generate an anonymous ranking leaderboard (Where user details are omitted) for a module, which determines the users position in that module based on current calculated mark. This shows the user their mark in relation with the rest, and can show the user if they are below the average or above it. This can determine if user performance is poor, or if the module needs adjusting. \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & G2 \\
+        			\hline
+        			\textbf{Functionality} & To generate or obtain, depending on your involvement in the module, badges/achievements, where by performing a specific task, a user can obtain said badge as proof they have accomplished something worthwhile, and strive towards obtaining a collection of them. \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & G3 \\
+        			\hline
+        			\textbf{Functionality} & A Reward/Penalty system can be implemented by users with correct permissions if they so wish. These can include but are not limited to things such as bonus marks for early hand-in, deadline leniency for exemplary performance or sub-minimum mark removal for individuals who show an increased effort or perform well enough in an assigned task. \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
+        	
+        	\begin{center}
+        		\begin{tabularx}{\textwidth}{ |X|X| }
+        			
+        			\hline
+        			\textbf{Use Case ID} & G4 \\
+        			\hline
+        			\textbf{Functionality} & To group together users with similar issues (Such as those struggling with theoretical tasks, and those with practical tasks), and as such obtain times and people with which to deal with the issue in as a group, promoting efficiency. \\
+        			\hline
+        			\textbf{Importance} & Essential \\
+        			\hline
+        			
+        		\end{tabularx}
+        	\end{center}
         	
         \subsection{Performance Requirements}
         \begin{itemize}
@@ -399,17 +742,51 @@ Time series prediction & A number of algorithms that use current input data to p
         \end{itemize}
         
         \subsection{Software System Attributes}
-        	\subsubsection{Accessibility}
+        
+        \begin{itemize}
+        	\item \textbf{Security}\\\\
+        	The concept of security is ranked highest as the system concerns important data that can affect people in extremely negative ways if maliciously changed.
+        	\begin{itemize}
+        		\item Use authorization levels to heavily restrict access to certain parts of the application.
+        		\item Add an extra authentication layer when working with very important data (e.g having a second account confirm all changes made).
+        	\end{itemize}
         	
-        	\subsubsection{Accuracy}
-        	\subsubsection{Administrability}
-        	\subsubsection{Compatibility}
-        	\subsubsection{Integrity}
-        	\subsubsection{Maintainability}
-        	\subsubsection{Mobility}
-        	\subsubsection{Traceability}
-        	\subsubsection{Vulnerability}
-        	\subsubsection{Usability}
+        	\item \textbf{Accountability}\\\\
+        	The concept of accountability is important considering the amount of people given access to important information, accountability ensures that malicious action can be traced back and fixed before becoming an issue.
+        	\begin{itemize}
+        		\item Use of a logger to keep track of transactions across the system, storing them safely for viewing later.
+        	\end{itemize}
+        	
+        	\item \textbf{Reliability}\\\\
+        	The concept of reliability is important due to the fact that important information is constantly being stored, and if lost has a huge negative impact. This means that in the even anything happens, no or very little data should be lost.
+        	\begin{itemize}
+        		\item Backup the database at a constant interval.
+        		\item Messaging queue ensures fault tolerance in case of down time.
+        	\end{itemize}
+        	
+        	\item \textbf{Scalability}\\\\
+        	The concept of scalability is important as the system is expected to hold more than a thousand active users, to which any number can be active at a single time.
+        	\begin{itemize}
+        		\item Use a messaging queue to ensure that transactions don't get lost at any point.
+        		\item Make use of a server designed for scalability (such as Node.js)
+        		\item Use docker to ensure easy deploy-ability if system is to be scaled up.
+        	\end{itemize}
+        	
+        	\item \textbf{Performance}\\\\
+        	The concept of performance is important as people can get impatient when waiting long periods of time for things to happen, but it is less important than ensuring a safe and secure system.
+        	\begin{itemize}
+        		\item Make use of stored procedures when working with databases to ensure faster CRUD
+        		\item Ensure heavy system tasks are halted during peak system capacity, such as time based analytics etc.
+        	\end{itemize}
+        	
+        	\item \textbf{Reusability}\\\\
+        	The concept of reusability refers the ability for the system to be easily used in more than one environment. The system should in theory be able to work for any department at least, and for any university if possible.
+        	\begin{itemize}
+        		\item Ensure all code and modules are decoupled
+        		\item Allow for customization of everything rather than locking in on anything (e.g Defined roles, list of modules, integrations)
+        	\end{itemize}
+        \end{itemize}
+
         \subsection{Other Requirements}
         \begin{itemize}
         \item Gamification elements are required to improve student motivation

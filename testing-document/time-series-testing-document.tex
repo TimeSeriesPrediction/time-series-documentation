@@ -77,20 +77,37 @@
     
     \tableofcontents
     
+    \pagebreak
+    
     % An overview of the Testing
     \section{Introduction}
     	
         %Specify the purpose of this SRS and the intended audience
         \subsection{Purpose}
         
+        The purpose of this document is to show the level to which the system has been tested, as well as document problem areas and other concerns that may arise from testing. In the event that something in future may break, this document will be the proof that at the current time, the tests were indeed working.
+        
         %Identify product by name, explain what the product will and will not do, describe the uses of the product including objectives, goals and benefits
         \subsection{Scope}
         
+       The system will be used to enter, view, and edit student marks. It will include a prediction system that will use the student marks to make predictions on the outcomes of the students results at the end of the semester. These predictions will be used by lecturers to identify students who need extra help to pass the semester. The predictions may also be used to identify whether the teaching strategies of the lecturer are working as well as they expected it to. The system will allow students to view their marks and it will include an element of gamification that aims to improve student motivation. The ultimate goal of the system is to improve student results. The system also aims to improve the manner in which teaching assistants, tutors and lecturers record marks.
+        
         \subsection{Definitions, Acronyms and Abbreviations}
         
-        % Outline the rest of the SRS and how it is organized 
-        \subsection{Overview of testing}
-        
+       \begin{tabular}{ |c|c| } 
+        	\hline
+        	Term & Definition \\
+        	\hline
+        	NPM & The Node Package Manager, used to interact with node packages and scripts\\
+        	\hline
+        	CLI & A Command Line Interface, used to manipulate a program through command line\\
+        	\hline
+        	NYC & The CLI for the Istanbul code coverage module\\
+        	\hline
+        \end{tabular}
+    
+    \pagebreak
+    
     % Explain the current testing framework in use
     \section{Testing framework}
     
@@ -100,11 +117,17 @@
     		% Describe the chosen testign framework in place
 	    	\subsubsection{The chosen testing framework}
 	    	
+	    	For server side, we make use of the jasmine testing framework for nodeJS. We also use Istanbul in order to check for test coverage, via their CLI, NYC.
+	    	
 	    	% Explain how to run the tests for the that framework
 	        \subsubsection{How to run the tests}
 	        
+	        To run the tests, simply go to the root folder of the application, open up a command line instance and type, "npm test".
+	        
 	        % Explain the current system of automated testing and how to use and view it
 	        \subsubsection{Automated testing overview}
+	        
+	        Tests are run on a GitHub push basis using the Travis Continuous Integration tool. A weekly check is also run to ensure everything stays in order. Code Climate is then used to determine the quality of code being written, as well as document the level of code that is covered, as determined by Istanbul.
 	        
 	    	% Describe the testing framework in place for the client
 	    \subsection{Web Client}
@@ -112,12 +135,19 @@
 	    % Describe the chosen testign framework in place
 	    \subsubsection{The chosen testing framework}
 	    
+    	For client side, we make use of the jasmine testing framework for nodeJS. We however make use of Karma to run jasmine, as a more Angular friendly approach. Protractor is also used to run tests that simulate user input.
+	    
 	    % Explain how to run the tests for the that framework
 	    \subsubsection{How to run the tests}
 	    
+	     To run the tests, simply go to the root folder of the application, open up a command line instance and type, "npm test" or alternatively "ng test".
+	    
 	    % Explain the current system of automated testing and how to use and view it
 	    \subsubsection{Automated testing overview} 
-        
+	    
+	    Tests are run on a GitHub push basis using the Travis Continuous Integration tool. A weekly check is also run to ensure everything stays in order.
+      
+    \pagebreak 
     % List the tests performed on the system
     \section{System tests}
     
@@ -126,7 +156,71 @@
     	
     		\subsubsection{Server}
     		
+   			\begin{tabular}{ |c|c|c| } 
+    			\hline
+    			Test number & Test overview & Test result \\
+    			\hline
+    			1 & Forgot password sends right URL & Passing\\
+    			\hline
+    			2 & GetUsers returns a list of users & Passing\\
+    			\hline
+    			3 & Validation fails if username is empty & Passing\\
+    			\hline
+    			4 & Validation fails if password is empty & Passing\\
+    			\hline
+    			5 & Validation fails if email is empty & Passing\\
+    			\hline
+    			6 & Correct password validated & Passing\\
+    			\hline
+    			7 & Incorrect password invalidated & Passing\\
+    			\hline
+    			8 & Invalidate incorrect password casing & Passing\\
+    			\hline
+    			9 & Invalidate extra spaces in password & Passing\\
+    			\hline
+    			10 & Authenticates if token valid & Passing\\
+    			\hline
+    			11 & Sets the user in the request object & Passing\\
+    			\hline
+    			12 & Unauthorized access if JSON invalid & Passing\\
+    			\hline
+    			13 & Unauthorized access if not encrypted & Passing\\
+    			\hline
+    			14 & Unauthorized access if token expired & Passing\\
+    			\hline
+    			15 & Unauthorized access if IP does not match & Passing\\
+    			\hline
+    			16 & Unauthorized access if token not set & Passing\\
+    			\hline
+    			17 & Generate token should return encrypted token & Passing\\
+    			\hline
+    			18 & Encrypt/decrypt should work on data & Passing\\
+    			\hline
+    			19 & GetSalt should return same length salt & Passing\\
+    			\hline
+    			20 & GetSalt should append salt to hash & Passing\\
+    			\hline
+    			21 & GetSalt should compute same hash with same data & Passing\\
+    			\hline
+    			22 & GenerateResetToken should be URL safe & Passing\\
+    			\hline
+    			23 & GenerateResetToken should be 20 characters long & Passing\\
+    			\hline
+    		\end{tabular}
+    		
     		\subsubsection{Web Client}
+    		
+   			\begin{tabular}{ |c|c|c| } 
+    			\hline
+    			Test number & Test overview & Test result \\
+    			\hline
+    			1 & App Component was successfully created & Passing\\
+    			\hline
+    			2 & Authorization Guard was successfully created & Passing\\
+    			\hline
+    			3 & Authorization Service was successfully created & Passing\\
+    			\hline
+    		\end{tabular}
     	
     	% List the integration tests which test compatability between modules
         \subsection{Integration tests}
@@ -137,30 +231,40 @@
         
         % List the functional/system test which test functionality between containers, and overall working of the system
         \subsection{Functional/system tests}
-     
-    % List the reports on those tests  
-    \section{Test reports}
-	   
-	    % List the reports for unit tests which test the functions in the system
-    	\subsection{Unit tests}
-	    
-		    \subsubsection{Server}
-		    
-		    \subsubsection{Web Client}
-	    
-	    % List the reports for integration tests which test compatability between modules
-	    \subsection{Integration tests}
-	    
-		    \subsubsection{Server}
-		    
-		    \subsubsection{Web Client}
-	    
-	    % List the reports for functional/system tests which test functionality between containers, and overall working of the system
-	    \subsection{Functional/system tests}
 	
+	\pagebreak
 	\section{Testing release log}
-        
+	
+	\begin{itemize}
+		\item \textbf{Server}
+		\begin{itemize}
+			\item
+				\begin{tabular}{ |c|c|c| } 
+					\hline
+					Date & Number of tests & Number of passing tests \\
+					\hline
+					2017/07/28 & 23 & 23\\
+					\hline
+				\end{tabular}
+		\end{itemize}
+ 	\end{itemize}
+ 
+	\begin{itemize}
+ 		\item \textbf{Client}
+ 		\begin{itemize}
+ 			\item
+ 			\begin{tabular}{ |c|c|c| } 
+ 				\hline
+ 				Date & Number of tests & Number of passing tests \\
+ 				\hline
+ 				2017/07/28 & 3 & 3\\
+ 				\hline
+ 			\end{tabular}
+ 		\end{itemize}
+ 	\end{itemize}  
+   
     \section{Appendixes}
+    
     \section{Index}
     \pagebreak  
 

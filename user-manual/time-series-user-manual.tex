@@ -76,72 +76,159 @@
 	\end{titlepage}
     
     \tableofcontents
+    
+    \clearpage
+            
     % An overview of the System
     \section{Introduction}
     	
         % Specify the purpose of the product
         \subsection{Purpose}
         
+        The purpose of this document is to present a detailed guide on the use of the Time Series Prediction System. It will explain how to setup the system to run in your environment; how to use the system once it is running; as well as deal with frequent errors that may occur during program use. This document is intended for all system users.
+          
         % Identify product by name, explain what the product will and will not do, describe the uses of the product including objectives, goals and benefits
         \subsection {Scope}
+        
+        The system will be used to enter, view, and edit student marks. It will include a prediction system that will use the student marks to make predictions on the outcomes of the students results at the end of the semester. These predictions will be used by lecturers to identify students who need extra help to pass the semester. The predictions may also be used to identify whether the teaching strategies of the lecturer are working as well as they expected it to. The system will allow students to view their marks and it will include an element of gamification that aims to improve student motivation. The ultimate goal of the system is to improve student results. The system also aims to improve the manner in which teaching assistants, tutors and lecturers record marks.
         
         
         \subsection{Definitions,Acronyms and Abbreviations}
         
-        % Outline the overview of the user manual
-        \subsection{User manual overview}
+        \begin{tabular}{ |c|c| } 
+        	\hline
+        	Term & Definition \\
+        	\hline
+        	NPM & The Node Package Manager, used to interact with node packages and scripts\\
+        	\hline
+        \end{tabular}
        
-  
+  	\pagebreak
+  	
     \section{Installing the software}
 
     	% Things to note before setting up the system
     	\subsection{Before you begin}
+    	
+    	Before starting with the system, ensure that the following key features are installed for the various sections:
+    	
+    	\begin{itemize}
+    		\item \textbf{Docker}
+    		\begin{itemize}
+    			\item Ensure you have version 17 or up of the standard Docker installation
+    			\item Ensure you have Docker Compose version 3 installed
+    			\item Both can be obtained from the docker website
+    		\end{itemize}
+    	\end{itemize}
+    
+    	\begin{itemize}
+	    	\item \textbf{Server}
+	    	\begin{itemize}
+	    		\item Ensure you have NodeJS 6.10 or the latest stable version installed
+	    		\item Ensure you have the latest stable release of MongoDB installed
+	    		\item Node can be obtained from the NodeJS website, MongoDB can be obtained from the mongodb website
+	    	\end{itemize}
+    	\end{itemize}
+    
+       	\begin{itemize}
+	    	\item \textbf{Client}
+	    	\begin{itemize}
+    			\item Ensure you have NodeJS 6.10 or the latest stable version installed
+    			\item Ensure you have the Angular CLI for Angular2
+	    		\item Node can be obtained from the NodeJS website, the angular CLI can be installed by using the command, "npm install -g angular/cli" 
+	    	\end{itemize}
+    	\end{itemize}
    	
     	% Explains how to setup the system making use of the dockehub image or docker-compose up
     	\subsection{Using a system Docker image}
     	
     		\subsubsection {Retrieving the files}
     		
-    		\subsubsection {Compiling the software}
+    		Once a Docker Hub image becomes available we will add the link in here
     		
-    		\subsubsection {Running the software} 
-    	
+    		\subsubsection {Compiling and running the software}
+    		
+   		  	\begin{itemize}
+    			\item \textbf{Using Docker Hub}
+    			\begin{itemize}
+    				\item Once a Docker Hub image becomes available we will add the link in here
+    			\end{itemize}
+    		\end{itemize}
+   		  	\begin{itemize}
+    			\item \textbf{Using cloned repository}
+    			\begin{itemize}
+    				\item Simply enter into the folder you wish to compile. In the same location as the docker-compose.yml, run the following command in terminal, "docker-compose up"
+    			\end{itemize}
+    		\end{itemize}
+
     	% Setting up the server as a standalone system for use with another client, either using docker-compose or the manual way
      	\subsection{Server}
      	
 	    	\subsubsection {Retrieving the files}
+	    	
+	    	To obtain the files for the server portion of the application, simply run the command, "git clone https://github.com/TimeSeriesPrediction/time-series-server"
    	    		
 	     	\subsubsection {Compiling the software}
 	     	
+	     	In order to be able to run the server, first enter into the cloned folder. While inside this folder, use a terminal and enter the command, "npm install". This will obtain all the required dependencies in order to run the program.
+	     	
 	     	\subsubsection {Running the software}
+	     	
+	     	To run the server, first ensure the configuration file, contained under config called default.json contains the correct information for your system. Once that is done, enter into a terminal within the root of the folder, and run the command, "npm start"
      
        	% Setting up the client as a standalone system for use with another server, either using docker-compose or the manual way
      	\subsection{Client}
      	
      		\subsubsection {Retrieving the files}
      		
+     		To obtain the files for the server portion of the application, simply run the command, "git clone https://github.com/TimeSeriesPrediction/time-series-web-client"
+     		
      		\subsubsection {Compiling the software}
+     				
+     		In order to be able to run the client, first enter into the cloned folder. While inside this folder, use a terminal and enter the command, "npm install". This will obtain all the required dependencies in order to run the program.
      		
      		\subsubsection {Running the software}
-     
+     		
+	     	To run the client, enter into a terminal within the root of the folder, and run the command, "npm start". As an alternative, one can make use of the command, "ng serve"
+    
+    \pagebreak
     % How to use the various features of the system
     
     \section{Using the software}
     
    		%The feature that involves adding new users to a system, either from a database or using a registration system
-    	\subsection{Adding new users to a system}
+    	\subsection{Logging in}
     	
+    	When accessing the client, one will be given the option to login. If a user is registered on the system, one needs simply enter the username and password tied to their account to be given access. The user will be automatically logged out within an hour if no activity is recorded from their account. If a user happens to forget their password, they may use the reset password feature.
+    	
+   		\subsection{Resetting a password}
+    	
+    	If a user happens to forget their password, they may use the forgot password link available on the login screen. The user will then have an email sent to the email account linked to their username. Once the email is received, the user will have an hour in order to follow the link given in order to enter a new password. Each reset is unique and will only work once.
+    
+    \pagebreak
+     
     \section{Troubleshooting}
     
 	    % Issues that are known to occur in the system and have not yet been solved
 	    \subsection{Known system issues}
 	    
+	    At this time, no major issues are known.
+	    
 	    % Error messages that may occur in the system and what exactly they mean
 	    \subsection{System error messages}
 	    
+	    \begin{itemize}
+	    	\item \textbf{You are not authorized}
+	    	\begin{itemize}
+	    		\item The following error message means you do not have the required permissions to perform an action, and should contact a system administrator to obtain such permissions if required.
+	    	\end{itemize}
+	    \end{itemize}
+	    
 	    % Questions that commonly tend to come up regarding the system
 	    \subsection{Frequently asked questions}
-	    
+	 
+	\pagebreak
+	 
     \section{Appendixes}
     
     \section{Index}

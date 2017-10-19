@@ -34,7 +34,7 @@
 		\begin{center}
 			
 			% University Logo
-			\includegraphics[width=0.6\textwidth]{up_logo.jpg}\\[2.0cm] 
+			\includegraphics[width=0.6\textwidth]{../images/up_logo.jpg}\\[2.0cm] 
 			
 			
 			\textsc{\LARGE CS@UP Time Series Prediction}\\[1.0cm]
@@ -204,59 +204,66 @@
     	
     	When accessing the client, one will be given the option to login. If a user is registered on the system, one needs simply enter the username and password tied to their account to be given access. The user will be automatically logged out within an hour if no activity is recorded from their account. If a user happens to forget their password, they may use the reset password feature.\\[1.0cm]
         
-        \includegraphics[width=1\textwidth]{login.PNG}\\[1.0cm] 
+        \includegraphics[width=1\textwidth]{../images/screens/login.PNG}\\[1.0cm] 
     	
    		\subsection{Resetting a password}
     	
     	If a user happens to forget their password, they may use the forgot password link available on the login screen. The user will then have an email sent to the email account linked to their username. Once the email is received, the user will have an hour in order to follow the link given in order to enter a new password. Each reset is unique and will only work once.\\[1.0cm]
         
-         \includegraphics[width=1\textwidth]{reset-password.PNG}\\[1.0cm] 
+        %\includegraphics[width=1\textwidth]{../images/screens/reset-password.PNG}\\[1.0cm] 
     	
     	\subsection{Adding a new user}
     	
         If a user has the correct permissions, they will have the rights to add new users to the system. New users can be entered in bulk, by uploading a formatted Excel spreadsheet file from their computer. Single new users can also be added through the interface provided.\\[1.0cm]
         
-        \includegraphics[width=1\textwidth]{add-bulk-students.PNG}\\[1.0cm]  
+        \includegraphics[width=1\textwidth]{../images/screens/add-bulk-students.PNG}\\[1.0cm]  
         
     	\subsection{Adding a new assessment}
         
         If a user has the correct permissions, they have the rights to add different assessments for different modules. This can be done by providing the module code, assessment type etc. to the interface fields.\\[1.0cm]
         
-        \includegraphics[width=1\textwidth]{assignments.PNG}\\[1.0cm]
+        %\includegraphics[width=1\textwidth]{../images/screens/assignments.PNG}\\[1.0cm]
         
         \subsection{Enrolling students for a module}
         
         If a user has the correct permissions, they have the rights to enroll students to a specific module. Students can be enrolled through uploading an Excel spreadsheet file containing the student numbers of the students to be enrolled for that specific module.\\[1.0cm]
         
-        \includegraphics[width=1\textwidth]{enroll-students.PNG}\\[1.0cm]
+        \includegraphics[width=1\textwidth]{../images/screens/enroll-students.PNG}\\[1.0cm]
      	\pagebreak
     	\subsection{View your assessment marks for a module}
         
         A student (or user) can view the marks that they have obtained for a specific assessment (such as a test) by heading over to this interface. On this interface, users are also offered the opportunity to easily query their mark, given that the query time for that mark has not yet expired.\\[1.0cm]
         
-        \includegraphics[width=1\textwidth]{student-view-marks.PNG}\\[1.0cm]
+        \includegraphics[width=1\textwidth]{../images/screens/student-view-marks.PNG}\\[1.0cm]
         
         \subsection{Add weightings for a module}
         
         If a user has the correct permissions, they have the rights to add weights for a specific module. 
         
-        \includegraphics[width=1\textwidth]{weightings.PNG}\\[1.0cm]
+        \includegraphics[width=1\textwidth]{../images/screens/weightings.PNG}\\[1.0cm]
         
         \subsection{Compose a query for an assessment}
         
-        A student (user) can easily query their mark, given that the query time for that mark has not yet expired. The query structure is automatically generated, the user only has to provide a reason for their query and send it.\\[1.0cm]
+        A student (user) can easily query their mark, given that the query time for that mark has not yet expired. The query structure is automatically generated, the user only has to provide a reason for their query and send it.
         
-        \includegraphics[width=1\textwidth]{student-query.PNG}\\[1.0cm]
+        %\includegraphics[width=1\textwidth]{../images/screens/student-query.PNG}\\[1.0cm]
         
         \subsection{View queries for assessments of a module}
         
         If a user has the correct permissions, they have the rights to view queries for all assessments of a specific module.
         
-        \includegraphics[width=1\textwidth]{admin-query.PNG}\\[1.0cm]
+        %\includegraphics[width=1\textwidth]{../images/screens/admin-query.PNG}\\[1.0cm]
         
         \subsection{Add staff members with permissions}
         
         A user with the correct permissions, will be able to authorize other users.
+        
+        \subsection{Running an analysis on a CSV}
+        
+        Given the correct permissions, select a .csv file from the file dialog. Select either run student analysis or run module analysis. This will display a graph showing the relevant data. The blue line is the marks that have been obtained, and the red line is a trend line showing the general direction of your marks going forward. If the run line falls below the red line, it shows there is a danger of you failing and it should be quickly rectified.
+        
+        \includegraphics[width=1\textwidth]{../images/screens/student-analysis.PNG}\\[1.0cm]
+        
     \pagebreak
      
     \section{Troubleshooting}
@@ -278,6 +285,13 @@
 	    
 	    % Questions that commonly tend to come up regarding the system
 	    \subsection{Frequently asked questions}
+	    
+	    \begin{itemize}
+	    	\item \textbf{Why is the red line reaching 100 when that should be impossible?}
+	    		\begin{itemize}
+	    			\item The red line does not indicate an actual mark, but a trend in your marks. An average distribution of marks will generally create a straight line, a large improvement may show a huge spike to show increase in performance. If the red line does fall below the 50 mark, you are at risk of failing. If it is only below 50, it shows little to no chance of coming back.
+	    		\end{itemize}
+	    \end{itemize}
 	 
 	\pagebreak
 	 
